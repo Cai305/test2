@@ -3,10 +3,14 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 var request = require('request');
+var cors = require('cors')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
+
+app.use(cors());
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
