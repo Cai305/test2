@@ -10,7 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-
+// Compress responses
+app.use(compression());
 app.use(cors());
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -35,8 +36,7 @@ var username1 = 'africanbankcms';
 passw = 'VLDWzM5d5J!qnDhkFfV09';
 
 
-var HTMLParser = require('node-html-parser');
- 
+
 
 
 // Middleware to parse JSON bodies
@@ -195,5 +195,6 @@ app.post('/makePayment', async (req, res) => {
 });
 
 app.listen(PORT, () => {
+  res.status(200).json({message:`Server is running on port ${PORT}`});
   console.log(`Server is running on port ${PORT}`);
 });
