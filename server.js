@@ -3,7 +3,8 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 var request = require('request');
-var cors = require('cors')
+var cors = require('cors');
+const helmet = require('helmet');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -106,6 +107,16 @@ app.use(bodyParser.json());
 // async function getToken() {
 //     return Results_object.Token
 // }
+
+
+// Use Helmet to set various HTTP headers for security
+app.use(helmet());
+
+// Set custom CSP header
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-eval'");
+  next();
+});
 
 var options = {
     'method': 'GET',
