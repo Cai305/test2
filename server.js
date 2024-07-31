@@ -5,6 +5,7 @@ require('dotenv').config();
 var request = require('request');
 var cors = require('cors');
 const helmet = require('helmet');
+const compression = require('compression');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -194,7 +195,6 @@ app.post('/makePayment', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  res.status(200).json({message:`Server is running on port ${PORT}`});
+app.listen(PORT, (res,req) => {
   console.log(`Server is running on port ${PORT}`);
 });
